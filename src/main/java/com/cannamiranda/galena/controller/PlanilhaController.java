@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
@@ -20,17 +21,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
-//TODO - Tratar celulas em branco
-//TODO - Tratar todas as celulas pra texto
-
-
-
+//TODO tratar data e formatos de celula diferentes de texto
 @Controller
 public class PlanilhaController {
 
-    //private static String fileName = "C:/Users/Clara/Documents/projetinhos/galena/sample_galena1.xlsx";
-    private static String fileName = "resources/exemplo_galena.xlsx";
+    //private static String fileName = "resources/exemplo_galena.xlsx";
+    private static String fileName = "resources/galena.xlsx";
+    private int rowStart = 4;
     private FileInputStream arquivo;
 
     private XSSFSheet loadSheet() throws IOException {
@@ -46,78 +43,76 @@ public class PlanilhaController {
         Galener galener = new Galener();
         int celMax = 7;
 
-        Iterator<Cell> cellIterator = row.cellIterator();
-
+        //Iterator<Cell> cellIterator = row.cellIterator();
         //while (cellIterator.hasNext()){
         for(int celNum = 0; celNum <= celMax; celNum++){
 
             //Cell cell = cellIterator.next();
-            Cell cell = row.getCell(celNum,Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+            //Cell cell = row.getCell(celNum,Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
             //Cell cell = row.getCell(celNum,Row.MissingCellPolicy.RETURN_NULL_AND_BLANK);
-            //Cell cell = row.getCell(celNum);
+            Cell cell = row.getCell(celNum);
 
-            if( cell == null) {
-                System.out.println("Vazio na celula: " + celNum);
-                if (celNum == 0){
-                    continue;
+                switch (celNum){
+                    case 0:
+                        galener.setEmail(cell.getStringCellValue());
+                        break;
+
+                    case 1:
+                        galener.setNome(cell.getStringCellValue());
+                        break;
+
+                    case 2:
+                        galener.getGrupo().setId(cell.getStringCellValue());
+                        break;
+
+                    case 3:
+                        galener.getGrupo().setNome(cell.getStringCellValue());
+                        break;
+
+                    case 4:
+                        galener.setCpf(cell.getStringCellValue());
+                        break;
+
+                    case 5:
+                        galener.setTelefone(cell.getStringCellValue());
+                        break;
+
+                    case 6:
+                        galener.setDtNascimento(cell.getStringCellValue());
+                        break;
+
+                    case 7:
+                        galener.setEndereco(cell.getStringCellValue());
+                        break;
                 }
-
-            }
-
-            //filtrando email vazio
-            if (celNum == 0){
-                String email = cell.getStringCellValue();
-                System.out.println("Entrou no if. email: " + email);
-            }
-
-
-            switch (celNum){
-
-                case 0:
-                    galener.setEmail(cell.getStringCellValue());
-                    if (galener.getEmail() == null){
-                        System.out.println("Email Vazio dentro do laço");
-                        //continue;
-                        //return galener;
-                    }
-                    break;
-
-                case 1:
-                    galener.setNome(cell.getStringCellValue());
-                    break;
-
-                case 2:
-                    galener.getGrupo().setId(cell.getStringCellValue());
-                    break;
-
-                case 3:
-                    galener.getGrupo().setNome(cell.getStringCellValue());
-                    break;
-
-                case 4:
-                    galener.setCpf(cell.getStringCellValue());
-                    break;
-
-                case 5:
-                    galener.setTelefone(cell.getStringCellValue());
-                    break;
-
-                case 6:
-                    galener.setDtNascimento(cell.getStringCellValue());
-                    break;
-
-                case 7:
-                    galener.setEndereco(cell.getStringCellValue());
-                    break;
-            }
-
         }
-
-        System.out.println(galener);
 
         return galener;
     }
 
+    private int getRowEnd(Sheet sheet){
+        int maxRow = 0;
+        int rowEnd = sheet.getLastRowNum();
+
+        for (int rowNum = rowStart; rowNum <= rowEnd; rowNum++){
+
+            Row row = sheet.getRow(rowNum);
+            Cell cell = row.getCell(0,Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+            if (cell == null){
+                //System.out.println("Email vazio na linha " + rowNum);
+                continue;
+            }
+            else {
+                maxRow++;
+            }
+        }
+
+        System.out.println("Quantidade de linhas validas: " + maxRow);
+        return rowStart + maxRow;
+    }
+
+
+    //Rotas
     @RequestMapping("/galeners")
     @ResponseBody
     public List<Galener> readPlanilha() throws FileNotFoundException {
@@ -125,27 +120,18 @@ public class PlanilhaController {
 
         try{
             XSSFSheet sheet = loadSheet();
+            int rowEnd = getRowEnd(sheet);
 
-            int rowStart = 4;
-            //int rowEnd = sheet.getLastRowNum();
-            int rowEnd = 20;
-
-
-            //Iterator<Row> rowIterator = sheet.iterator();
-
-            //while (rowIterator.hasNext()){
             for (int rowNum = rowStart; rowNum < rowEnd; rowNum++){
 
-                //Row row = rowIterator.next();
-                //int rowNum = row.getRowNum();
                 Row row = sheet.getRow(rowNum);
                 galeners.add(getGalenerFromRow(row));
             }
             arquivo.close();
-            //System.out.println(galeners.toString());
 
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado");
+            throw new FileNotFoundException();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

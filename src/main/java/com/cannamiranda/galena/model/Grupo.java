@@ -27,4 +27,15 @@ public class Grupo {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+
+    @Override
+    public String toString() {
+        String str = new String();
+        str = str.concat("id: " + getId());
+        str = str.concat("\nnome do grupo: " + getNome());
+
+
+        return str;
+    }
 }

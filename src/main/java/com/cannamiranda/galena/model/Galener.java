@@ -14,13 +14,13 @@ public class Galener {
     public String toString() {
         String galener = new String();
 
-        galener.concat("Nome: " + getNome());
-        galener.concat("\nEmail: " + getEmail());
-        galener.concat("\nCPF: " + getCpf());
-        galener.concat("\nTelefone: " + getTelefone());
-        galener.concat("\nData de Nascimento: " + getDtNascimento());
-        galener.concat("\nEndereco: " + getEndereco());
-        galener.concat("\nGrupo: " + getGrupo());
+        galener = galener.concat("Nome: " + getNome());
+        galener = galener.concat("\nEmail: " + getEmail());
+        galener = galener.concat("\nCPF: " + getCpf());
+        galener = galener.concat("\nTelefone: " + getTelefone());
+        galener = galener.concat("\nData de Nascimento: " + getDtNascimento());
+        galener = galener.concat("\nEndereco: " + getEndereco());
+        galener = galener.concat("\nGrupo: " + getGrupo());
 
         return galener;
     }
@@ -57,7 +57,7 @@ public class Galener {
 
         if (email == null || email == ""){
             System.out.println("Email nao informado");
-            this.email = null;
+            this.email = "Nao Informado";
         }
         else {
             this.email = email;
@@ -82,9 +82,10 @@ public class Galener {
 
         if (cpf == null || cpf == ""){
             System.out.println("CPF nao informado");
+            this.cpf = "Não informado";
         }
 
-        this.cpf = "Não informado";
+        this.cpf = cpf;
 
     }
 
@@ -96,10 +97,11 @@ public class Galener {
 
         if (telefone == null || telefone == ""){
             System.out.println("Telefone nao informado");
+            this.telefone = "Não informado";
         }
 
 
-        this.telefone = "Não informado";
+        this.telefone = telefone;
     }
 
     public String getDtNascimento() {

@@ -18,7 +18,7 @@ public class GalenaApplication {
 		System.out.println("Comecando aqui");
 		PlanilhaController planilhaController = new PlanilhaController();
 		List<Galener> galeners = planilhaController.readPlanilha();
-		Galener gal = galeners.get(1);
+		Galener gal = galeners.get(0);
 		System.out.println(gal);
 		System.out.println("fim");
 
