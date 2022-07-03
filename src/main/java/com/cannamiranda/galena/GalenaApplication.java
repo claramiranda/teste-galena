@@ -20,7 +20,7 @@ public class GalenaApplication {
 		List<Galener> galeners = planilhaController.readPlanilha();
 		Galener gal = galeners.get(0);
 		System.out.println(gal);
-		System.out.println("fim");
+		System.out.println("final");
 
 	}
 

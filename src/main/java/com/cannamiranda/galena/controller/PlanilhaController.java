@@ -12,6 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 
 //TODO tratar data e formatos de celula diferentes de texto
-@Controller
+@RestController
 public class PlanilhaController {
 
     //private static String fileName = "resources/exemplo_galena.xlsx";
@@ -114,7 +115,6 @@ public class PlanilhaController {
 
     //Rotas
     @RequestMapping("/galeners")
-    @ResponseBody
     public List<Galener> readPlanilha() throws FileNotFoundException {
         List<Galener> galeners = new ArrayList<Galener>();
 

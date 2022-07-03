@@ -1,5 +1,7 @@
 package com.cannamiranda.galena.model;
 
+
+//TODO criar classe DTO ?
 public class Galener {
     private String email;
     private String nome;
