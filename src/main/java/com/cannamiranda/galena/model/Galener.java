@@ -1,16 +1,59 @@
 package com.cannamiranda.galena.model;
 
 
-//TODO criar classe DTO ?
+//TODO transformar classe em entidade
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Galener {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String email;
     private String nome;
-    private Grupo grupo;
+    private String grupoid;
+    private String gruponome;
+
+    //private Grupo grupo;
     private String cpf;
     private String telefone;
-    private String dtNascimento;
+    private String dtnascimento;
     private String endereco;
 
+
+    /** CONSTRUCTORS */
+    public Galener(String email, String nome, String grupoid, String gruponome, String cpf, String telefone, String dtnascimento, String endereco) {
+        this.id = Long.valueOf(hashCode());
+        this.email = email;
+        this.nome = nome;
+        this.grupoid = grupoid;
+        this.gruponome = gruponome;
+        //this.grupo = new Grupo(grupoId, grupoNome);
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.dtnascimento = dtnascimento;
+        this.endereco = endereco;
+    }
+
+    public Galener() {
+        this.id = Long.valueOf(hashCode());
+        this.email = "";
+        this.nome = "";
+        //this.grupo = new Grupo();
+        this.cpf = "";
+        this.telefone = "";
+        this.dtnascimento = "";
+        this.endereco = "";
+
+    }
+
+
+
+    /** Override methods*/
 
     @Override
     public String toString() {
@@ -20,35 +63,15 @@ public class Galener {
         galener = galener.concat("\nEmail: " + getEmail());
         galener = galener.concat("\nCPF: " + getCpf());
         galener = galener.concat("\nTelefone: " + getTelefone());
-        galener = galener.concat("\nData de Nascimento: " + getDtNascimento());
+        galener = galener.concat("\nData de Nascimento: " + getDtnascimento());
         galener = galener.concat("\nEndereco: " + getEndereco());
-        galener = galener.concat("\nGrupo: " + getGrupo());
+        //galener = galener.concat("\nGrupo: " + getGrupo());
+        galener = galener.concat("\nGrupo ID: " + getGrupoid());
+        galener = galener.concat("\nGrupo Nome: " + getGruponome());
 
         return galener;
     }
 
-
-    //CONSTRUCTOR
-    public Galener(String email, String nome, String grupoId, String grupoNome, String cpf, String telefone, String dtNascimento, String endereco) {
-        this.email = email;
-        this.nome = nome;
-        this.grupo = new Grupo(grupoId, grupoNome);
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.dtNascimento = dtNascimento;
-        this.endereco = endereco;
-    }
-
-    public Galener() {
-        this.email = "";
-        this.nome = "";
-        this.grupo = new Grupo();
-        this.cpf = "";
-        this.telefone = "";
-        this.dtNascimento = "";
-        this.endereco = "";
-
-    }
 
     //GETTERS AND SETTERS
     public String getEmail() {
@@ -106,12 +129,12 @@ public class Galener {
         this.telefone = telefone;
     }
 
-    public String getDtNascimento() {
-        return dtNascimento;
+    public String getDtnascimento() {
+        return dtnascimento;
     }
 
-    public void setDtNascimento(String dtNascimento) {
-        this.dtNascimento = dtNascimento;
+    public void setDtnascimento(String dtnascimento) {
+        this.dtnascimento = dtnascimento;
     }
 
     public String getEndereco() {
@@ -122,11 +145,28 @@ public class Galener {
         this.endereco = endereco;
     }
 
-    public Grupo getGrupo() {
+    public String getGrupoid() {
+        return grupoid;
+    }
+
+    public void setGrupoid(String grupoid) {
+        this.grupoid = grupoid;
+    }
+
+    public String getGruponome() {
+        return gruponome;
+    }
+
+    public void setGruponome(String gruponome) {
+        this.gruponome = gruponome;
+    }
+
+
+    /*public Grupo getGrupo() {
         return grupo;
     }
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
-    }
+    }*/
 }
