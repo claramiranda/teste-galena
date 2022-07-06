@@ -3,6 +3,8 @@ package com.cannamiranda.galena.model;
 
 //TODO transformar classe em entidade
 
+import com.cannamiranda.galena.repository.GalenerRepository;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +13,8 @@ import javax.persistence.Id;
 @Entity
 public class Galener {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    //@Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private @Id @GeneratedValue Long id;
     private String email;
     private String nome;
     private String grupoid;
@@ -51,8 +53,9 @@ public class Galener {
 
     }
 
-    public Galener atualizar(Galener galener){
-        this.setId(galener.getId());
+    public Galener atualizar(Galener galener, GalenerRepository galenerRepository){
+        //this.setId(galener.getId());
+
         this.setEmail(galener.getEmail());
         this.setNome(galener.getNome());
         this.setGrupoid(galener.getGrupoid());
@@ -62,6 +65,7 @@ public class Galener {
         this.setDtnascimento(galener.getDtnascimento());
         this.setEndereco(galener.getEndereco());
 
+        galenerRepository.save(this);
         return this;
     }
 
@@ -198,11 +202,11 @@ public class Galener {
         this.gruponome = gruponome;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

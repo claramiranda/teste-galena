@@ -8,4 +8,7 @@ import java.util.List;
 public interface GalenerRepository extends JpaRepository<Galener, String> {
 
     List<Galener> findByEmail(String email);
+    Galener findById(Long id);
+
+    Integer deleteById(Long id);
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -48,24 +49,36 @@ public class DatabaseController {
     }
 
     @RequestMapping(value = "/galeners/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Galener> getGalenerDetails(@RequestBody String id){
-    //public ResponseEntity<Galener> getGalenerDetails(@PathVariable String id){
-        //Galener galener = galenerRepository.getReferenceById(id);
-        //System.out.println(galenerRepository.findById(id));
-        Optional<Galener> galener = galenerRepository.findById(id);
-        if (galener.isPresent()){
-            return ResponseEntity.ok(new Galener());
+    public ResponseEntity<Galener> getGalenerDetails(@PathVariable Long id){
+        Galener galener = galenerRepository.findById(id);
+        //System.out.println(galener);
+        if (galener != null){
+            return ResponseEntity.ok(galener);
         }
-        //Galener galener = new Galener();
-        //Galener galener = galenerRepository.getOne(id);
         return ResponseEntity.notFound().build();
     }
 
     @RequestMapping(value = "/galeners/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Galener> atualizarGalener(@PathVariable String id, @RequestBody Galener galenerAtualizado){
-        Galener galenerBanco = galenerRepository.getReferenceById(id);
-        galenerBanco.atualizar(galenerAtualizado);
-
-        return ResponseEntity.ok(galenerBanco);
+    @Transactional
+    public ResponseEntity<Galener> atualizarGalener(@PathVariable Long id, @RequestBody Galener galenerAtualizado){
+        Galener galenerBanco = galenerRepository.findById(id);
+        Galener galener = galenerRepository.findById(id);
+        if (galener != null) {
+            galenerBanco.atualizar(galenerAtualizado, galenerRepository);
+            return ResponseEntity.ok(galenerAtualizado);
+        }
+        return ResponseEntity.notFound().build();
     }
+
+    @RequestMapping(value = "/galeners/{id}", method = RequestMethod.DELETE)
+    @Transactional
+    public ResponseEntity<Galener> deleteGalener(@PathVariable Long id){
+        Galener galener = galenerRepository.findById(id);
+        if (galener != null) {
+            galenerRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
