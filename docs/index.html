@@ -14,13 +14,13 @@
 <h1>Salve quebrada!!</h1>
 
 <nav>
+	<div>
 		<div>
-			<div>
-				<button onclick="openTab('importarDados')">Importar dados</button>
-				<button onclick="openTab('verTodes')">Ver Todes</button>
-				<button onclick="openTab('adicionarGalener')">Adicionar Galener</button>
-			</div>
+			<button onclick="openTab('importarDados')">Importar dados</button>
+			<button onclick="openTab('verTodes')">Ver Todes</button>
+			<button onclick="openTab('adicionarGalener')">Adicionar Galener</button>
 		</div>
+	</div>
 	</div>
 </nav>
 
@@ -39,21 +39,9 @@
 
 	<div id="verTodes" class="tab" style="display:none">
 		<h2>Listagem de Galeners</h2>
-		<div>
-			<div class="card" style="width: 18rem;">
-				<div class="card-header" id="cardNome">
-					Nome do Galener
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item" id="cardEmail">Email</li>
-					<li class="list-group-item" id="cardTelefone">Telefone</li>
-					<li class="list-group-item" id="cardGrupo">Nome Grupo</li>
-					<a href="#" class="btn btn-secondary">Editar Informações</a>
-					<a href="#" class="btn btn-danger">Deletar</a>
-				</ul>
-			</div>
+		<main>
 
-		</div>
+		</main>
 	</div>
 
 	<div id="adicionarGalener" class="tab" style="display:none">
@@ -140,6 +128,25 @@
 		x[i].style.display = "none";
 	  }
 	  document.getElementById(tabName).style.display = "block";
+	}
+
+	function showCards(galeners){
+		let output = ''
+		for (let galener of galeners){
+
+			output += `<div class="card" style="width: 18rem;">`
+			output += `<div class="card-header" id="cardNome"> ${galener.nome} </div>`
+			output += `<ul class="list-group list-group-flush">`
+			output += `<li class="list-group-item" id="cardEmail"> ${galener.email}</li>`
+			output += `<li class="list-group-item" id="cardTelefone"> ${galener.telefone}</li>`
+			output += `<li class="list-group-item" id="cardGrupo">${galener.nomeGrupo}</li>`
+			output += `<a href="#" class="btn btn-secondary">Editar Informações</a>`
+			output += `<a href="#" class="btn btn-danger">Deletar</a>`
+			output += `</ul></div>`
+
+		}
+		document.querySelector('main').innerHTML = output;
+
 	}
 </script>
 
