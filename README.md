@@ -21,6 +21,27 @@ O objetivo da ferramenta é ler e processar uma planilha com informações de Ga
   - CSS + Bootstrap
   - Javascript 
 
+## Objetivos
+  - Back-End
+
+  - [X] API Rest utilizando Spring
+    - [X] Processamento da Planilha
+    - [X] Salvar dados em bd
+    - [X] Rota de listagem geral 
+    - [X] Rota de listagem detalhada
+    - [X] Rota de edição 
+    - [X] Rota de deleção
+    - [X] Tratamento de 404
+    - [ ] Deploy da aplicação no Heroku 
+    - [ ] Criação dos Swaggers 
+    - [ ] Automatização de deploy via GH
+
+
+  - Front-End
+    - [ ] Estrutura HTML da página
+    - [ ] Aplicação de bootstrap
+    - [ ] Requests via js
+    - [ ] Hospedar página no github pages
 
 ## Regras de negócio e cenários de exceção não tratados
 Para limitação do escopo, foi dedidido que o e-mail é uma informação obrigatória para os Galeners, portanto a api processa os dados da planilha até encontrar uma célula com e-mail não preenchido.
@@ -35,4 +56,5 @@ Para limitação do escopo, foi dedidido que o e-mail é uma informação obriga
   ### Apache POI (org.apache.poi) 
    - poi
    - poi-ooxml
+
 	
