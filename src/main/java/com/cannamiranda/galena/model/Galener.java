@@ -11,8 +11,8 @@ import javax.persistence.Id;
 @Entity
 public class Galener {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String email;
     private String nome;
     private String grupoid;
@@ -27,7 +27,7 @@ public class Galener {
 
     /** CONSTRUCTORS */
     public Galener(String email, String nome, String grupoid, String gruponome, String cpf, String telefone, String dtnascimento, String endereco) {
-        this.id = Long.valueOf(hashCode());
+        //this.id = Long.valueOf(hashCode());
         this.email = email;
         this.nome = nome;
         this.grupoid = grupoid;
@@ -40,7 +40,7 @@ public class Galener {
     }
 
     public Galener() {
-        this.id = Long.valueOf(hashCode());
+        //this.id = Long.valueOf(hashCode());
         this.email = "";
         this.nome = "";
         //this.grupo = new Grupo();
@@ -49,6 +49,20 @@ public class Galener {
         this.dtnascimento = "";
         this.endereco = "";
 
+    }
+
+    public Galener atualizar(Galener galener){
+        this.setId(galener.getId());
+        this.setEmail(galener.getEmail());
+        this.setNome(galener.getNome());
+        this.setGrupoid(galener.getGrupoid());
+        this.setGruponome(galener.getGruponome());
+        this.setCpf(galener.getCpf());
+        this.setTelefone(galener.getTelefone());
+        this.setDtnascimento(galener.getDtnascimento());
+        this.setEndereco(galener.getEndereco());
+
+        return this;
     }
 
 
@@ -84,10 +98,7 @@ public class Galener {
             System.out.println("Email nao informado");
             this.email = "Nao Informado";
         }
-        else {
-            this.email = email;
-        }
-
+        this.email = email;
     }
 
     public String getNome() {
@@ -95,7 +106,13 @@ public class Galener {
     }
 
     public void setNome(String nome) {
+        //this.nome = nome;
+        if (nome == null || nome == ""){
+            System.out.println("nome nao informado");
+            this.nome = "Nao Informado";
+        }
         this.nome = nome;
+
     }
 
     public String getCpf() {
@@ -134,7 +151,12 @@ public class Galener {
     }
 
     public void setDtnascimento(String dtnascimento) {
-        this.dtnascimento = dtnascimento;
+        //this.dtnascimento = dtnascimento;
+        if (dtnascimento == null || dtnascimento.equals("")){
+            System.out.println("dtnascimento nao informado");
+            this.dtnascimento = "Não informado";
+        }
+        this.dtnascimento = telefone;
     }
 
     public String getEndereco() {
@@ -142,6 +164,11 @@ public class Galener {
     }
 
     public void setEndereco(String endereco) {
+        //this.endereco = endereco;
+        if (endereco == null || endereco.equals("")){
+            System.out.println("endereco nao informado");
+            this.endereco = "Não informado";
+        }
         this.endereco = endereco;
     }
 
@@ -150,6 +177,11 @@ public class Galener {
     }
 
     public void setGrupoid(String grupoid) {
+        //this.grupoid = grupoid;
+        if (grupoid == null || grupoid == ""){
+            System.out.println("grupoid nao informado");
+            this.grupoid = "Nao Informado";
+        }
         this.grupoid = grupoid;
     }
 
@@ -158,9 +190,21 @@ public class Galener {
     }
 
     public void setGruponome(String gruponome) {
+        //this.gruponome = gruponome;
+        if (gruponome == null || gruponome == ""){
+            System.out.println("gruponome nao informado");
+            this.gruponome = "Nao Informado";
+        }
         this.gruponome = gruponome;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /*public Grupo getGrupo() {
         return grupo;

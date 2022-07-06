@@ -64,42 +64,45 @@ public class XlsxHandler {
         for(int cellNum = 0; cellNum <= cellMax; cellNum++){
 
             Cell cell = row.getCell(cellNum);
+            //Cell cell = row.getCell(cellNum,Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+            if (cell == null ){
+                continue;
+            }else {
+                switch (cellNum){
+                    case 0:
+                        galener.setEmail(cell.getStringCellValue());
+                        break;
 
-            switch (cellNum){
-                case 0:
-                    galener.setEmail(cell.getStringCellValue());
-                    break;
+                    case 1:
+                        galener.setNome(cell.getStringCellValue());
+                        break;
 
-                case 1:
-                    galener.setNome(cell.getStringCellValue());
-                    break;
+                    case 2:
+                        galener.setGrupoid((cell.getStringCellValue()));
+                        break;
 
-                case 2:
-                    galener.setGrupoid((cell.getStringCellValue()));
-                    break;
+                    case 3:
+                        galener.setGruponome((cell.getStringCellValue()));
+                        break;
 
-                case 3:
-                    galener.setGruponome((cell.getStringCellValue()));
-                    break;
+                    case 4:
+                        galener.setCpf(cell.getStringCellValue());
+                        break;
 
-                case 4:
-                    galener.setCpf(cell.getStringCellValue());
-                    break;
+                    case 5:
+                        galener.setTelefone(cell.getStringCellValue());
+                        break;
 
-                case 5:
-                    galener.setTelefone(cell.getStringCellValue());
-                    break;
+                    case 6:
+                        galener.setDtnascimento(cell.getStringCellValue());
+                        break;
 
-                case 6:
-                    galener.setDtnascimento(cell.getStringCellValue());
-                    break;
-
-                case 7:
-                    galener.setEndereco(cell.getStringCellValue());
-                    break;
+                    case 7:
+                        galener.setEndereco(cell.getStringCellValue());
+                        break;
+                }
             }
         }
-
         return galener;
     }
 
