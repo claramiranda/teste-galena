@@ -39,9 +39,9 @@ O objetivo da ferramenta é ler e processar uma planilha com informações de Ga
 
   - Front-End
     - [ ] Estrutura HTML da página
-    - [ ] Aplicação de bootstrap
+    - [X] Aplicação de bootstrap
     - [ ] Requests via js
-    - [ ] Hospedar página no github pages
+    - [X] Hospedar página no github pages
 
 ## Regras de negócio e cenários de exceção não tratados
 Para limitação do escopo, foi dedidido que o e-mail é uma informação obrigatória para os Galeners, portanto a api processa os dados da planilha até encontrar uma célula com e-mail não preenchido.

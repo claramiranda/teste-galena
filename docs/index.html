@@ -12,76 +12,95 @@
 </head>
 <body>
 <h1>Salve quebrada!!</h1>
-<h2>Carregar planilha de dados</h2>
-<form>
-	<div class="form-group">
-		<label for="carregarPlanilhaGaleners">Insira sua planilha de dados</label>
-		<input type="file" class="form-control-file" id="carregarPlanilhaGaleners">
+
+<nav>
+		<div>
+			<div>
+				<button onclick="openTab('importarDados')">Importar dados</button>
+				<button onclick="openTab('verTodes')">Ver Todes</button>
+				<button onclick="openTab('adicionarGalener')">Adicionar Galener</button>
+			</div>
+		</div>
 	</div>
-</form>
+</nav>
 
 <div>
-	<form>
-		<div class="form-group">
-			<label for="adicionarEmail">Email</label>
-			<input type="email" class="form-control" id="adicionarEmail" placeholder="name@example.com">
-		</div>
-		<div class="form-group">
-			<label for="adicionarNome">Nome Completo</label>
-			<input type="text" class="form-control" id="adicionarNome" placeholder="Seu nome completo">
-		</div>
-		<div class="form-group">
-			<label for="adicionarCpf">CPF</label>
-			<input type="text" class="form-control" id="adicionarCpf" placeholder="111.111.111-01">
-		</div>
-		<div class="form-group">
-			<label for="adicionarTelefone">Telefone</label>
-			<input type="text" class="form-control" id="adicionarTelefone" placeholder="11 12345-6789">
-		</div>
-
-		<div class="form-group">
-			<label for="dataNascimento">Data de Nascimento:</label>
-			<input type="date" id="dataNascimento" name="dataNascimento" placeholder="13/09/1995">
-		</div>
-		<div class="form-group">
-			<label for="endereco">Endereco</label>
-			<input type="text" class="form-control" id="endereco" placeholder="Rua dos Bobos, n 0">
-		</div>
-
-		<div class="form-group">
-			<label for="adicionarGrupoId">Id do Grupo</label>
-			<input type="text" class="form-control" id="adicionarGrupoId" placeholder="1">
-		</div>
-		<div class="form-group">
-			<label for="adicionarGrupoNome">Nome do Grupo</label>
-			<input type="text" class="form-control" id="adicionarGrupoNome" placeholder="Grupo das Sereias">
-		</div>
-	</form>
-
-	<button class="btn btn-primary" type="submit" onclick="enviarFormulario()">Cadastrar Galener</button>
-</div>
-
-
-
-<h3>Listagem dos Galeners</h3>
-
-<div>
-	<div class="card" style="width: 18rem;">
-		<div class="card-header" id="cardNome">
-			Nome do Galener
-		</div>
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item" id="cardEmail">Email</li>
-			<li class="list-group-item" id="cardTelefone">Telefone</li>
-			<li class="list-group-item" id="cardGrupo">Nome Grupo</li>
-			<a href="#" class="btn btn-secondary">Editar Informações</a>
-			<a href="#" class="btn btn-danger">Deletar</a>
-		</ul>
+	<div id="importarDados" class="tab">
+		<h2>Importar dados</h2>
+		<h2>Carregar planilha de dados</h2>
+		<form>
+			<div class="form-group">
+				<label for="carregarPlanilhaGaleners">Insira sua planilha de dados</label>
+				<input type="file" class="form-control-file" id="carregarPlanilhaGaleners">
+			</div>
+		</form>
+		<button class="btn btn-submit" type="submit" onclick="enviarPlanilha()">Enviar Planilha</button>
 	</div>
 
+	<div id="verTodes" class="tab" style="display:none">
+		<h2>Listagem de Galeners</h2>
+		<div>
+			<div class="card" style="width: 18rem;">
+				<div class="card-header" id="cardNome">
+					Nome do Galener
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" id="cardEmail">Email</li>
+					<li class="list-group-item" id="cardTelefone">Telefone</li>
+					<li class="list-group-item" id="cardGrupo">Nome Grupo</li>
+					<a href="#" class="btn btn-secondary">Editar Informações</a>
+					<a href="#" class="btn btn-danger">Deletar</a>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="adicionarGalener" class="tab" style="display:none">
+		<h2>Adicionar Galener</h2>
+		<div>
+			<form>
+				<div class="form-group">
+					<label for="adicionarEmail">Email</label>
+					<input type="email" class="form-control" id="adicionarEmail" placeholder="name@example.com">
+				</div>
+				<div class="form-group">
+					<label for="adicionarNome">Nome Completo</label>
+					<input type="text" class="form-control" id="adicionarNome" placeholder="Seu nome completo">
+				</div>
+				<div class="form-group">
+					<label for="adicionarCpf">CPF</label>
+					<input type="text" class="form-control" id="adicionarCpf" placeholder="111.111.111-01">
+				</div>
+				<div class="form-group">
+					<label for="adicionarTelefone">Telefone</label>
+					<input type="text" class="form-control" id="adicionarTelefone" placeholder="11 12345-6789">
+				</div>
+
+				<div class="form-group">
+					<label for="dataNascimento">Data de Nascimento:</label>
+					<input type="date" id="dataNascimento" name="dataNascimento" placeholder="13/09/1995">
+				</div>
+				<div class="form-group">
+					<label for="endereco">Endereco</label>
+					<input type="text" class="form-control" id="endereco" placeholder="Rua dos Bobos, n 0">
+				</div>
+
+				<div class="form-group">
+					<label for="adicionarGrupoId">Id do Grupo</label>
+					<input type="text" class="form-control" id="adicionarGrupoId" placeholder="1">
+				</div>
+				<div class="form-group">
+					<label for="adicionarGrupoNome">Nome do Grupo</label>
+					<input type="text" class="form-control" id="adicionarGrupoNome" placeholder="Grupo das Sereias">
+				</div>
+			</form>
+			<button class="btn btn-primary" type="submit" onclick="enviarFormulario()">Cadastrar Galener</button>
+		</div>
+	</div>
+
+
 </div>
-
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -112,6 +131,18 @@
 		    console.log(galener);
 		};
 	</script>
+
+<script>
+	function openTab(tabName) {
+	  var i;
+	  var x = document.getElementsByClassName("tab");
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";
+	  }
+	  document.getElementById(tabName).style.display = "block";
+	}
+</script>
+
 
 </body>
 </html>
