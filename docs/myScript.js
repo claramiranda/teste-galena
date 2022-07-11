@@ -1,6 +1,7 @@
 class Galener{
 
-    constructor(email, nome, cpf, dtNasc, endereco, telefone, grupoId, grupoNome)
+    //constructor(email, nome, cpf, dtNasc, endereco, telefone, grupoId, grupoNome)
+    constructor(email, nome, cpf, telefone, dtNasc, endereco, grupoid, gruponome)
     {
         this.email = email;
         this.nome = nome;
@@ -8,8 +9,8 @@ class Galener{
         this.dtNasc = dtNasc;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.grupoId = grupoId;
-        this.grupoNome = grupoNome;
+        this.grupoid = grupoid;
+        this.gruponome = gruponome;
     }
     
 
@@ -25,11 +26,11 @@ function enviarFormulario(){
     var grupoIdValue = document.getElementById('adicionarGrupoId').value;
     var grupoNomeValue = document.getElementById('adicionarGrupoNome').value;
 
+    //let galener = new Galener(emailValue, nomeValue, cpfValue, telefoneValue, dtNascValue, enderecoValue, grupoIdValue, grupoNomeValue);
     let galener = new Galener(emailValue, nomeValue, cpfValue, telefoneValue, dtNascValue, enderecoValue, grupoIdValue, grupoNomeValue);
-
-    console.log(galener)
+    console.log("enviarFormulario:galener = " + galener)
     var parsed = JSON.stringify(galener);
-    console.log(parsed);
+    console.log("enviarFormulario:parsed = " +parsed);
     
 
     let xhr = new XMLHttpRequest();
@@ -143,13 +144,10 @@ function showCards(galeners){
         output += `<li class="list-group-item" id="cardEmail"> ${galener.email}</li>`
         output += `<li class="list-group-item" id="cardTelefone"> ${galener.telefone}</li>`
         output += `<li class="list-group-item" id="cardGrupo">${galener.gruponome}</li>`
-        output += `<a href="#" class="btn btn-secondary">Editar Informações</a>`
+        output += `<a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick=editarInformacoes(${galener.id})>Editar Informações</a>`
         output += `<a href="#" class="btn btn-danger" onclick=deletarGalener(${galener.id})>Deletar</a>`
         output += `</ul></div></div>`
         output += `</br>`
-
-        console.log("passando no laço" + galener)
-
     }
     document.querySelector('main').innerHTML = output;
 
@@ -163,3 +161,64 @@ function openTab(tabName) {
     }
     document.getElementById(tabName).style.display = "block";
 }
+
+function editarInformacoes(){
+
+    //pega dados no banco
+    // insere dados do galener como placeholder
+    
+    //console.log("Editando id: " + id)
+   carregaPlaceholderModal(id)
+
+    var emailValue = document.getElementById('editEmail').value;
+    var nomeValue = document.getElementById('editNome').value;
+    var cpfValue = document.getElementById('editcpf').value;
+    var telefoneValue = document.getElementById('editTelefone').value;
+    //var dtNascValue = document.getElementById('editDtNasc').value;
+    var enderecoValue = document.getElementById('editEndereco').value;
+    var grupoIdValue = document.getEgetElementByIdlementsByName('editGrupoId').value;
+    var grupoNomeValue = document.getElementById('editGrupoNome').value;
+
+    let galener = new Galener(emailValue, nomeValue, cpfValue, telefoneValue, dtNascValue, enderecoValue, grupoIdValue, grupoNomeValue);
+
+    let xhr = new XMLHttpRequest();
+    var url = "http://localhost:8080/galeners/";
+    url += id;
+    xhr.open("PUT", url);
+
+
+
+}
+
+
+async function carregaPlaceholderModal(id){
+    let xhr = new XMLHttpRequest();
+    var url = "http://localhost:8080/galeners/";
+    url += id;
+
+    xhr.open("GET", url);
+    xhr.onload = () => {
+
+        try {    
+        
+             galener = JSON.parse(xhr.responseText);
+             console.log(galener)
+            
+            document.getElementById('editEmail').placeholder = galener.email;
+            document.getElementById('editNome').placeholder = galener.nome;
+            document.getElementById('editcpf').placeholder = galener.cpf;
+            document.getElementById('editTelefone').placeholder = galener.telefone;
+            document.getElementById('editDtNasc').placeholder = galener.dtnascimento;
+            document.getElementById('editEndereco').placeholder = galener.endereco;
+            document.getElementById('editGrupoId').placeholder = galener.grupoid;
+            document.getElementById('editGrupoNome').placeholder = galener.gruponome;
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    xhr.send();
+}
+
+

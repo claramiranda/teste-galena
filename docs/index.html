@@ -19,9 +19,9 @@
 <nav>
 	<div>
 		<div>
-			<button onclick="openTab('importarDados')">Importar dados</button>
-			<button onclick="openTab('verTodes')">Ver Todes</button>
-			<button onclick="openTab('adicionarGalener')">Adicionar Galener</button>
+			<button onclick="openTab('importarDados')"class="btn btn-light">Importar dados</button>
+			<button onclick="openTab('verTodes')"class="btn btn-light">Ver Todes</button>
+			<button onclick="openTab('adicionarGalener')"class="btn btn-light">Adicionar Galener</button>
 		</div>
 	</div>
 	</div>
@@ -44,7 +44,7 @@
 
 	<div id="verTodes" class="tab" style="display:none">
 		<h2>Listagem de Galeners</h2>
-		<button onclick="getGaleners()">Atualizar lista</button>
+		<button onclick="getGaleners()"class="btn btn-light">Atualizar lista</button>
 		<br>
 		<main>
 			
@@ -94,6 +94,61 @@
 		</div>
 	</div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="editEmail" placeholder="name@example.com">
+				</div>
+				<div class="form-group">
+					<label for="nome">Nome Completo</label>
+					<input type="text" class="form-control" id="editNome" placeholder="Seu nome completo">
+				</div>
+				<div class="form-group">
+					<label for="cpf">CPF</label>
+					<input type="text" class="form-control" id="editpf" placeholder="111.111.111-01">
+				</div>
+				<div class="form-group">
+					<label for="Telefone">Telefone</label>
+					<input type="text" class="form-control" id="editTelefone" placeholder="11 12345-6789">
+				</div>
+
+				<div class="form-group">
+					<label for="dtNasc">Data de Nascimento:</label>
+					<input type="date" id="editDtNasc" name="dataNascimento" placeholder="13/09/1995">
+				</div>
+				<div class="form-group">
+					<label for="enderecoEdit">Endereco</label>
+					<input type="text" class="form-control" id="editEndereco" placeholder="Rua dos Bobos, n 0">
+				</div>
+
+				<div class="form-group">
+					<label for="grupoId">Id do Grupo</label>
+					<input type="text" class="form-control" id="editGrupoId" placeholder="1">
+				</div>
+				<div class="form-group">
+					<label for="grupoNome">Nome do Grupo</label>
+					<input type="text" class="form-control" id="editGrupoNome" placeholder="Grupo das Sereias">
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 </div>
 <!-- Optional JavaScript -->
