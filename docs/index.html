@@ -13,7 +13,8 @@
 	<title>Gestão de Galeners</title>
 </head>
 <body>
-<h1>Salve quebrada!!</h1>
+<h1>Gerenciador de Galeners</h1>
+<hr class="dotted">
 
 <nav>
 	<div>
@@ -29,19 +30,22 @@
 <div>
 	<div id="importarDados" class="tab">
 		<h2>Importar dados</h2>
-		<h2>Carregar planilha de dados</h2>
+		<p>Para carregar seus dados, primeiro salve seu arquivo xlsx dentro da pasta /resources do projeto e então clique no botão abaixo.</p>
 		<form>
 			<div class="form-group">
-				<label for="carregarPlanilhaGaleners">Insira sua planilha de dados</label>
-				<input type="file" class="form-control-file" id="carregarPlanilhaGaleners">
+				<label for="carregarPlanilhaGaleners">Insira o nome planilha a ser processada</label>
+				<input type="text" id="nomePlanilha" placeholder="galena.xlsx">
 			</div>
 		</form>
-		<button class="btn btn-submit" type="submit" onclick="getGaleners()">Enviar Planilha</button>
+		<button class="btn btn-submit" type="submit" onclick="processarPlanilha()">Carregar Planilha</button>
 	</div>
+
+
 
 	<div id="verTodes" class="tab" style="display:none">
 		<h2>Listagem de Galeners</h2>
 		<button onclick="getGaleners()">Atualizar lista</button>
+		<br>
 		<main>
 			
 		</main>

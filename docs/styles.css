@@ -1,13 +1,20 @@
 body {
     background-color: powderblue;
+    text-align: center;
   }
   h1 {
     color: blue;
+    
   }
-  p {
-    color: red;
+  main{
+    display: inline-block;
   }
 
-  main{
-    display: inline;
+  .cardGalener{
+    margin: 2%;
   }
+
+.adicionarGalener{
+  width: 50%;
+  weight: 50%;
+}

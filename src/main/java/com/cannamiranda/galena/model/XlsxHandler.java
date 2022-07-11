@@ -15,20 +15,20 @@ import java.util.List;
 
 public class XlsxHandler {
     private static String fileName;
-    private int rowStart;
-    private int cellMax;
+    private int rowStart = 4;
+    private int cellMax = 7;
     private int rowEnd;
     private FileInputStream arquivo;
 
 
     public XlsxHandler(String fileName, int rowStart, int cellMax) throws IOException {
-        //todo tratar o filename pra sempre incluir a pasta antes
-        this.fileName = fileName;
-
-        this.rowStart = rowStart;
-        this.cellMax = cellMax;
+        String filePath = "resources/";
+        this.fileName = filePath.concat(fileName);
+        this.rowStart = 4;
+        this.cellMax = 7;
 
     }
+
 
     private XSSFSheet loadSheet() throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
@@ -115,14 +115,11 @@ public class XlsxHandler {
             this.rowEnd = getRowEnd(sheet);
 
             for (int rowNum = rowStart; rowNum < rowEnd; rowNum++){
-
                 Row row = sheet.getRow(rowNum);
                 Galener galener = getGalenerFromRow(row);
                 galeners.add(galener);
             }
-
             arquivo.close();
-
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado");
             throw new FileNotFoundException();

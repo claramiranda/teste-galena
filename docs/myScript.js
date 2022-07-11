@@ -28,18 +28,6 @@ function enviarFormulario(){
     let galener = new Galener(emailValue, nomeValue, cpfValue, telefoneValue, dtNascValue, enderecoValue, grupoIdValue, grupoNomeValue);
 
     console.log(galener)
-
-    /*var galener = {
-        nome: nomeValue,
-        email: emailValue,
-        cpf:cpfValue,
-        telefone:telefoneValue,
-        dtNasc:dtNascValue,
-        endereco:enderecoValue,
-        grupoId:grupoIdValue,
-        grupoNome:grupoNomeValue
-    };*/
-
     var parsed = JSON.stringify(galener);
     console.log(parsed);
     
@@ -53,38 +41,19 @@ function enviarFormulario(){
 };
 
 
-function enviarPlanilha(){
+function processarPlanilha(){
 
-    
-    let data = document.getElementById("carregarPlanilhaGaleners").files[0];
-    let entry = document.getElementById("carregarPlanilhaGaleners").files[0];
+    var nomePlanilha = document.getElementById('nomePlanilha').value;
+    console.log("nomePlanilha: " + nomePlanilha);
 
-
-    //console.log('doupload',entry,data)
-    fetch('carregarPlanilha' + encodeURIComponent(entry.name), {method:'POST',body:data});
-    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/carregarPlanilha");
-    xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("Access-Control-Allow-Origin","*");
-    xhr.setRequestHeader("fileName",data.name)
-    xhr.setRequestHeader("rowStart","4")
-    xhr.setRequestHeader("cellMax","7")
-
-    xhr.onload = () => console.log(xhr.responseText);
-    xhr.send();
-    //alert('your file has been uploaded');
-
-
-   /* let req = new XMLHttpRequest();
-    let formData = new FormData();
-
-    formData.append("photo", photo);                                
-    req.open("POST", '/upload/image');
-    req.send(formData);*/
-
-    console.log(data.name);
+    var body = '{"fileName":"'
+    body += nomePlanilha;
+    body += '"}'
+    console.log(body)
+    xhr.send(body);
 }
 
 async function getGaleners(){
@@ -146,7 +115,7 @@ async function getGaleners(){
 function deletarGalener(id)
 {
     console.log("deletando" + id)
-    alert(id)
+    alert("Deletando galeners com o id " + id)
 
     var  url = "http://localhost:8080/galeners/"
     url += id
@@ -154,6 +123,8 @@ function deletarGalener(id)
     let xhr = new XMLHttpRequest();
     xhr.open("DELETE", url);
     xhr.send();
+
+    //getGaleners()
 
 
 
@@ -165,6 +136,7 @@ function showCards(galeners){
 
     for (let galener of galeners){
 
+        output += `<div class=cardGalener>`
         output += `<div class="card" style="width: 18rem;">`
         output += `<div class="card-header" id="cardNome"> ${galener.nome} </div>`
         output += `<ul class="list-group list-group-flush">`
@@ -173,7 +145,7 @@ function showCards(galeners){
         output += `<li class="list-group-item" id="cardGrupo">${galener.gruponome}</li>`
         output += `<a href="#" class="btn btn-secondary">Editar Informações</a>`
         output += `<a href="#" class="btn btn-danger" onclick=deletarGalener(${galener.id})>Deletar</a>`
-        output += `</ul></div>`
+        output += `</ul></div></div>`
         output += `</br>`
 
         console.log("passando no laço" + galener)
@@ -183,9 +155,6 @@ function showCards(galeners){
 
 }
 
-
-
-
 function openTab(tabName) {
     var i;
     var x = document.getElementsByClassName("tab");
@@ -193,4 +162,4 @@ function openTab(tabName) {
       x[i].style.display = "none";
     }
     document.getElementById(tabName).style.display = "block";
-  }
+}
