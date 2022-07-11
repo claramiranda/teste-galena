@@ -18,10 +18,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DatabaseController {
 
     @Autowired
     private GalenerRepository galenerRepository;
+
 
     @RequestMapping(value = "/galeners", method = RequestMethod.GET)
     public List<Galener> getGaleners () throws FileNotFoundException {
