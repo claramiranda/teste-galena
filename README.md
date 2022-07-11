@@ -6,17 +6,36 @@ URL front: https://claramiranda.github.io/teste-galena/
 ## Como Executar o projeto
  Pré-requisito: baixar localmente o projeto e salvar o arquivo xlsx dentro da pasta /resources.
 
- Para iniciar o serviço back-end, deve-se executar o método main da classe GalenaApplication, ele subirá o servidor no endereço http://localhost:8080/.
-  
- Com o back-end inicializado, o primeiro passo é inserir o nome do arquivo a ser processado na tab "Importar Dados" e clicar no botão "Processar Planilha", após isso os dados processados poderão ser visualizados na tab "Ver Todes"
+ 1. Para iniciar o serviço back-end, deve-se executar o método main da classe GalenaApplication, ele subirá o servidor no endereço http://localhost:8080/.
+ Com o back-end inicializado, o primeiro passo é inserir o nome do arquivo a ser processado na tab "Importar Dados" e clicar no botão "Processar Planilha", após isso os dados processados poderão ser visualizados na tab "Ver Todes". Nesse momento, os dados são processados e salvos numa base de dados local.
+
+
+ 2. Clicar no botão "Ver Todes", para ver cards montados com os dados importados da planilha.
+
+
 
 ## Rotas
     POST /carregarPlanilha
-        corpo do request: 
-        {
-            "fileName":"nome_do_arquivo.xlsx",
-        }
-        Resposta: json com os dados processados da planilha
+        Descrição: Rota utilizada para carregar dados advindos do xlsx
+            corpo do request: 
+                {
+                    "fileName":"nome_do_arquivo.xlsx",
+                }
+            Resposta: json com os dados processados da planilha
+
+    GET /galeners
+        Descrição: Responde listagem de todes galeners cadastrados no banco        
+            corpo do request: não necessário
+            Resposta: json a listagem de todes galeners salvos no banco
+
+    DELETE /galeners/{id}
+        Descrição: Deleta galener da base de dados
+            corpo do request: não necessário
+            Resposta: codigo 200
+
+
+
+    
 
 ## Sobre
 

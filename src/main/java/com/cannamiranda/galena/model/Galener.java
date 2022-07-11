@@ -99,7 +99,7 @@ public class Galener {
     public void setEmail(String email) {
 
         if (email == null || email == ""){
-            System.out.println("Email nao informado");
+            //System.out.println("Email nao informado");
             this.email = "Nao Informado";
         }
         this.email = email;
@@ -112,7 +112,7 @@ public class Galener {
     public void setNome(String nome) {
         //this.nome = nome;
         if (nome == null || nome == ""){
-            System.out.println("nome nao informado");
+            //System.out.println("nome nao informado");
             this.nome = "Nao Informado";
         }
         this.nome = nome;
@@ -127,7 +127,7 @@ public class Galener {
         this.cpf = cpf;
 
         if (cpf == null || cpf == ""){
-            System.out.println("CPF nao informado");
+            //System.out.println("CPF nao informado");
             this.cpf = "Não informado";
         }
 
@@ -142,7 +142,7 @@ public class Galener {
     public void setTelefone(String telefone) {
 
         if (telefone == null || telefone == ""){
-            System.out.println("Telefone nao informado");
+            //System.out.println("Telefone nao informado");
             this.telefone = "Não informado";
         }
 
@@ -157,7 +157,7 @@ public class Galener {
     public void setDtnascimento(String dtnascimento) {
         //this.dtnascimento = dtnascimento;
         if (dtnascimento == null || dtnascimento.equals("")){
-            System.out.println("dtnascimento nao informado");
+            //System.out.println("dtnascimento nao informado");
             this.dtnascimento = "Não informado";
         }
         this.dtnascimento = telefone;
@@ -170,7 +170,7 @@ public class Galener {
     public void setEndereco(String endereco) {
         //this.endereco = endereco;
         if (endereco == null || endereco.equals("")){
-            System.out.println("endereco nao informado");
+            //System.out.println("endereco nao informado");
             this.endereco = "Não informado";
         }
         this.endereco = endereco;
@@ -183,7 +183,7 @@ public class Galener {
     public void setGrupoid(String grupoid) {
         //this.grupoid = grupoid;
         if (grupoid == null || grupoid == ""){
-            System.out.println("grupoid nao informado");
+            ///System.out.println("grupoid nao informado");
             this.grupoid = "Nao Informado";
         }
         this.grupoid = grupoid;
@@ -196,7 +196,7 @@ public class Galener {
     public void setGruponome(String gruponome) {
         //this.gruponome = gruponome;
         if (gruponome == null || gruponome == ""){
-            System.out.println("gruponome nao informado");
+            //System.out.println("gruponome nao informado");
             this.gruponome = "Nao Informado";
         }
         this.gruponome = gruponome;
@@ -209,12 +209,4 @@ public class Galener {
     public void setId(Long id) {
         this.id = id;
     }
-
-    /*public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }*/
 }
