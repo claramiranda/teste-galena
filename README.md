@@ -43,6 +43,13 @@ Rota de detalhes do galener atulizado![Postman galener atualizado](https://githu
 
 Galener atulizado no banco![Galener atualizado no bd](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto10.png?raw=true)
 
+Galener atualizado no front![Galener atualizado no front](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto11.png?raw=true)
+
+
+6. Para deletar um galener, é só clicar no botão Deletar. Um alerta será emitido na página e após clicar em Atualizar Lista o card será removido do front.
+Alerta de galener sendo excluido![Deletando Galener](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto12.png?raw=true)
+
+Lista atualizada![Lista Atualizada](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto13.png?raw=true)
 
 
 ## Rotas
