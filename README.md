@@ -9,8 +9,39 @@ URL front: https://claramiranda.github.io/teste-galena/
  1. Para iniciar o serviço back-end, deve-se executar o método main da classe GalenaApplication, ele subirá o servidor no endereço http://localhost:8080/.
  Com o back-end inicializado, o primeiro passo é inserir o nome do arquivo a ser processado na tab "Importar Dados" e clicar no botão "Processar Planilha", após isso os dados processados poderão ser visualizados na tab "Ver Todes". Nesse momento, os dados são processados e salvos numa base de dados local.
 
+Exemplo de planilha![Alt ou título da imagem](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto3.png?raw=true)
 
- 2. Clicar no botão "Ver Todes", para ver cards montados com os dados importados da planilha.
+Localização do arquivo![Localização do Arquivo](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto2.png?raw=true)
+
+Carregando a planilha![Carregamento da planilha](https://github.com/claramiranda/teste-galena/blob/master/docs/img/carregamento.png?raw=true)
+
+Dados salvos no banco, pode ser consultado via http://localhost:8080/h2-console ![Dados salvos no banco local](https://github.com/claramiranda/teste-galena/blob/master/docs/img/dadosnobanco.png?raw=true)
+
+
+2. Alternar para a tab "Ver Todes", para ver cards montados com os dados importados da planilha. É necessário clicar no botão "Atualizar Lista para que os resultados sejam carregados."
+
+Listagem de galeners ![Cards de Galeners](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto4.png?raw=true)
+
+
+
+3. Para incluir um novo registro de galeners, é só navegar até a tab Adicionar galener e preencher o formulário. Após isso, se retornarmos a tab Ver Toder e atualizar a lista, podemos checar o novo Galener!
+
+Adicionando galener ![Incluir Galener](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto5.png?raw=true)
+
+Novo Galener na lista![CArd novo galener](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto6.png?raw=true)
+
+
+4. Ao clicar no botão Editar Informações dentro do card de um galener, um modal é aberto, contendo o estado atual dos dados como placeholder.
+
+Placeholder dos dados![Placeholder dados](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto7.png?raw=true)
+
+5. Após preencher os dados é só clicar em Save changes e voltar para a listagem para ver o galener atualizado
+
+Formulário preenchido![Formulario preenchido](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto8.png?raw=true)
+
+Rota de detalhes do galener atulizado![Postman galener atualizado](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto9.png?raw=true)
+
+Galener atulizado no banco![Galener atualizado no bd](https://github.com/claramiranda/teste-galena/blob/master/docs/img/foto10.png?raw=true)
 
 
 
@@ -27,6 +58,11 @@ URL front: https://claramiranda.github.io/teste-galena/
         Descrição: Responde listagem de todes galeners cadastrados no banco        
             corpo do request: não necessário
             Resposta: json a listagem de todes galeners salvos no banco
+
+    GET /galeners/{id}
+        Descrição: Carrega galener do banco usando ID como parametro      
+            corpo do request: não necessário
+            Resposta: json com dados de galener salvos no banco
 
     DELETE /galeners/{id}
         Descrição: Deleta galener da base de dados

@@ -144,7 +144,7 @@ function showCards(galeners){
         output += `<li class="list-group-item" id="cardEmail"> ${galener.email}</li>`
         output += `<li class="list-group-item" id="cardTelefone"> ${galener.telefone}</li>`
         output += `<li class="list-group-item" id="cardGrupo">${galener.gruponome}</li>`
-        output += `<a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick=editarInformacoes(${galener.id})>Editar Informações</a>`
+        output += `<a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick=carregaPlaceholderModal(${galener.id})>Editar Informações</a>`
         output += `<a href="#" class="btn btn-danger" onclick=deletarGalener(${galener.id})>Deletar</a>`
         output += `</ul></div></div>`
         output += `</br>`
@@ -168,23 +168,27 @@ function editarInformacoes(){
     // insere dados do galener como placeholder
     
     //console.log("Editando id: " + id)
-   carregaPlaceholderModal(id)
+   //carregaPlaceholderModal(id)
 
+    var id = document.getElementById('galenerId').value;
     var emailValue = document.getElementById('editEmail').value;
     var nomeValue = document.getElementById('editNome').value;
     var cpfValue = document.getElementById('editcpf').value;
     var telefoneValue = document.getElementById('editTelefone').value;
-    //var dtNascValue = document.getElementById('editDtNasc').value;
+    var dtNascValue = document.getElementById('editDtNasc').value;
     var enderecoValue = document.getElementById('editEndereco').value;
-    var grupoIdValue = document.getEgetElementByIdlementsByName('editGrupoId').value;
+    var grupoIdValue = document.getElementById('editGrupoId').value;
     var grupoNomeValue = document.getElementById('editGrupoNome').value;
 
     let galener = new Galener(emailValue, nomeValue, cpfValue, telefoneValue, dtNascValue, enderecoValue, grupoIdValue, grupoNomeValue);
+    console.log("editarInformacoes:galener JSON stringify = " + JSON.stringify(galener));
 
     let xhr = new XMLHttpRequest();
     var url = "http://localhost:8080/galeners/";
     url += id;
     xhr.open("PUT", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(galener));
 
 
 
@@ -203,7 +207,7 @@ async function carregaPlaceholderModal(id){
         
              galener = JSON.parse(xhr.responseText);
              console.log(galener)
-            
+            document.getElementById('galenerId').value = galener.id;
             document.getElementById('editEmail').placeholder = galener.email;
             document.getElementById('editNome').placeholder = galener.nome;
             document.getElementById('editcpf').placeholder = galener.cpf;

@@ -7,14 +7,15 @@ body {
     
   }
   main{
-    display: inline-block;
+    display: inline-flex;
   }
 
   .cardGalener{
     margin: 2%;
   }
 
-.adicionarGalener{
+#adicionarGalener{
+  margin-left: 25%;
   width: 50%;
   weight: 50%;
 }
